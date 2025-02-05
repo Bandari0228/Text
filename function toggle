@@ -1,4 +1,27 @@
- MenuOptions: MenuItem[] = Menudata;
+
+//recursive function
+MenuOptions: MenuItem[] = Menudata;
+  
+  toggle(item: any, itemchildren: any[]=[]) {
+    this.closeAll(itemchildren, item);
+    item.isOpen = !item.isOpen;
+  }
+  closeAll(menu: any[], currentItem: any) {
+    menu.forEach(item => {
+      if (item !== currentItem) {
+        item.isOpen = false; 
+      }
+      if (item.children) {
+        this.closeAll(item.children, currentItem);
+      }
+    });
+  }
+
+
+
+
+//this is old function
+MenuOptions: MenuItem[] = Menudata;
 
   toggle(menuItem: MenuItem, subMenu?: MenuItem, subChild?: MenuItem, subSubChild?: MenuItem) {
 
