@@ -1,0 +1,61 @@
+/* background-color:  rgb(255, 255, 255, 0.4);
+background-color: rgb(29, 33, 47); */
+
+.sidemenu{
+    box-sizing: border-box;
+    background-color: rgb(29, 33, 47);
+    width: 300px;
+    color: rgb(255, 255, 255, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 70px;
+    padding: 10px 20px;
+
+    
+}
+.menudashboard a{
+    text-decoration: none;
+    color: rgb(255, 255, 255, 0.4);
+    padding: 10px ;
+    font-size: 20px;
+}
+.menu{
+    padding: 10px ;
+    color: rgb(255, 255, 255, 0.4);
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu span:hover {
+    color: #fff;    
+}
+
+.arrow{
+    float:right;
+    width: 0;
+    height: 0;
+    margin-top: 30px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid rgb(255, 255, 255, 0.4);
+}
+
+
+.larrow{
+    margin: 10px;
+    width: 0;
+    height: 0;
+
+  
+}
+
+.submenu-item{
+    margin-left: 10px;
+}
+
+.subchild-item{
+    margin-left: 22px;
+}
+.subsubchild-item{
+    margin-left: 55px;
+}
