@@ -8,29 +8,90 @@
 </div>
 <div class="menu">
   @for (menuItem of MenuOptions;track menuItem) {
-    <div class="menu-item" (click)="toggle(menuItem) " >
+    <div class="menu-item" (click)="toggle(menuItem, MenuOptions) " >
       <span>{{ menuItem.title }}</span>
-      @if (menuItem.isSub) {<span class="arrow">></span>}
+      @if (menuItem.isSub) {<span class="arrow"></span>}
     </div>
     <div>
       @if (menuItem.isSub && menuItem.isOpen) {
         @for (subMenu of menuItem.children; track subMenu) {
-          <div class="submenu-item"  (click)="toggle(menuItem,subMenu)">
-            @if(menuItem.isSub){ <span >></span> }
-            <span class="larrow">{{ subMenu.title }}</span>
-            @if(subMenu.isSub){ <span class="arrow">></span> }
+          <div class="submenu-item"  (click)="toggle(subMenu, menuItem.children)">
+            @if(menuItem.isSub){ <span class="larrow" >></span> }
+            <span>{{ subMenu.title }}</span>
+            @if(subMenu.isSub){ <span class="arrow"></span> }
           </div>
           <div>
             @if (subMenu.isSub && subMenu.isOpen) {
               @for (subChild of subMenu.children; track subChild) {
-                <div class="subchild-item" (click)="toggle(menuItem,subMenu,subChild)">
+                <div class="subchild-item" (click)="toggle(subChild, subMenu.children)">
                   @if(subMenu.isSub){ <span class="larrow">></span> }
                   <span >{{ subChild.title }}</span>
-                  @if(subChild.isSub){ <span class="arrow">></span> }
+                  @if(subChild.isSub){ <span class="arrow"></span> }
                 </div>
                 @if(subChild.isSub && subChild.isOpen){
                   @for (subSubChild of subChild.children; track subSubChild) {
-                    <div class="subsubchild-item"  (click)="toggle(menuItem,subMenu,subChild,subSubChild)">
+                    <div class="subsubchild-item"  (click)="toggle(subSubChild, subChild.children)">
+                      @if (subChild.isSub) {<span class="larrow">></span>  }
+                      <span>{{subSubChild.title}}</span>
+                      @if(subSubChild.isSub){ <span class="arrow">></span> }
+                    </div>
+                    
+                  }
+                }
+              }
+            }
+          </div>
+        }
+      }
+    </div>
+  }
+</div>
+</div> 
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+<!-- <div class="sidemenu">
+
+  <div class="logo">
+    <img src="/" alt="SPRUHA">
+</div>
+<div class="menudashboard">
+  <a href="javascript:;">Dashboard</a>
+</div>
+<div class="menu">
+  @for (menuItem of MenuOptions;track menuItem) {
+    <div class="menu-item" (click)="toggle(menuItem) " >
+      <span>{{ menuItem.title }}</span>
+      @if (menuItem.isSub) {<span class="arrow"></span>}
+    </div>
+    <div>
+      @if (menuItem.isSub && menuItem.isOpen) {
+        @for (subMenu of menuItem.children; track subMenu) {
+           <div class="submenu-item"  (click)="toggle(menuItem,subMenu)"> 
+          
+            @if(menuItem.isSub){ <span class="larrow" >></span> }
+            <span>{{ subMenu.title }}</span>
+            @if(subMenu.isSub){ <span class="arrow"></span> }
+          </div>
+          <div>
+            @if (subMenu.isSub && subMenu.isOpen) {
+              @for (subChild of subMenu.children; track subChild) {
+                 <div class="subchild-item" (click)="toggle(menuItem,subMenu,subChild)"> 
+          
+                  @if(subMenu.isSub){ <span class="larrow">></span> }
+                  <span >{{ subChild.title }}</span>
+                  @if(subChild.isSub){ <span class="arrow"></span> }
+                </div>
+                @if(subChild.isSub && subChild.isOpen){
+                  @for (subSubChild of subChild.children; track subSubChild) {
+                    <div class="subsubchild-item"  (click)="toggle(menuItem,subMenu,subChild,subSubChild)"> 
                       @if (subChild.isSub) {<span class="larrow">></span>  }
                       <span>{{subSubChild.title}}</span>
                       @if(subSubChild.isSub){ <span class="arrow">></span> }
@@ -45,8 +106,5 @@
     </div>
   }
 </div>
-
-</div>
-
-
-<router-outlet></router-outlet>
+</div> 
+<router-outlet></router-outlet> -->
