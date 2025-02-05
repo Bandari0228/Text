@@ -1,0 +1,45 @@
+ MenuOptions: MenuItem[] = Menudata;
+
+  toggle(menuItem: MenuItem, subMenu?: MenuItem, subChild?: MenuItem, subSubChild?: MenuItem) {
+
+
+    this.MenuOptions.forEach(item => {
+      if (item !== menuItem) {
+        item.isOpen = false;
+      }
+  
+      if (item.children) {
+        item.children.forEach(subitem => {
+          if (subitem !== subMenu) {
+            subitem.isOpen = false;
+          }
+  
+          if (subitem.children) {
+            subitem.children.forEach(subsubitem => {
+              if (subsubitem !== subChild) {
+                subsubitem.isOpen = false;
+              }
+  
+              if (subsubitem.children) {
+                subsubitem.children.forEach(subsubsubitem => {
+                  if (subsubsubitem !== subSubChild) {
+                    subsubsubitem.isOpen = false;
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  
+    if (subSubChild) {
+      subSubChild.isOpen = !subSubChild.isOpen;
+    } else if (subChild) {
+      subChild.isOpen = !subChild.isOpen;
+    } else if (subMenu) {
+      subMenu.isOpen = !subMenu.isOpen;
+    } else {
+      menuItem.isOpen = !menuItem.isOpen;
+    }
+  }  
