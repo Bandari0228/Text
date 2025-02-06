@@ -1,0 +1,43 @@
+import { Component, Input } from '@angular/core';
+import { MenuItem } from '../menuoptions'; // Assuming this interface is defined elsewhere
+import { NgFor, NgIf } from '@angular/common';
+
+@Component({
+  selector: 'app-menu-item',
+  templateUrl: './menu-item.component.html',
+  styleUrls: ['./menu-item.component.css'],
+  imports:[NgFor,NgIf]
+})
+export class MenuItemComponent {
+  @Input() menuItem!: MenuItem;
+  @Input() menuList: MenuItem[] = [];  // Ensure it's always an empty array by default
+
+  toggle(item: MenuItem, list: MenuItem[]) {
+    // Close all other sibling items
+    list.forEach(menu => {
+      if (menu !== item) {
+        menu.isOpen = false; // Close sibling items
+      }
+    });
+
+    // Toggle the clicked item
+    item.isOpen = !item.isOpen;
+
+    // If the item has children, toggle them as well
+    if (item.children) {
+      this.closeChildren(item);
+      item.children.forEach(child => {
+        child.isOpen = true; // Open all children when the parent is clicked
+      });
+    }
+  }
+
+  closeChildren(item: MenuItem) {
+    if (item.children) {
+      item.children.forEach(child => {
+        child.isOpen = false; // Close each child
+        this.closeChildren(child); // Recursively close any deeper children
+      });
+    }
+  }
+}
