@@ -1,0 +1,1022 @@
+export interface MenuItem {
+  title: string;
+  isLink: boolean;
+  isSub: boolean;
+  isOpen?: boolean; 
+  path?:string;
+  children?: MenuItem[]; 
+}
+export const Menudata: MenuItem[] = [
+//Crypto Currencies
+{
+  "title": "Crypto Currencies",
+  "isLink": false,
+  "isSub": true,
+  "isOpen": false,
+  "children": [
+    {
+      "title": "Dashboard",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/dashboard", 
+    },
+    {
+      "title": "Marketcap",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/marketcap", 
+    },
+    {
+      "title": "Currency exchange",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/currency-exchange", 
+    },
+    {
+      "title": "Buy & Sell",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/buy-sell", 
+    },
+    {
+      "title": "Wallet",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/wallet", 
+    },
+    {
+      "title": "Transactions",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/transactions", 
+    }
+  ]
+},
+
+  //ECommerce
+  {
+    "title": "ECommerce",
+    "isLink": false,
+    "isSub": true,
+    "children": [
+      {
+        "title": "Dashboard",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/dashboard", 
+      },
+      {
+        "title": "Products",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/products", 
+      },
+      {
+        "title": "Product Details",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/product-details", 
+      },
+      {
+        "title": "Cart",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/cart", 
+      },
+      {
+        "title": "Wishlist",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/wishlist", 
+      },
+      {
+        "title": "Checkout",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/checkout", 
+      },
+      {
+        "title": "Orders",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/orders", 
+      },
+      {
+        "title": "Add Product",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/add-product", 
+      },
+      {
+        "title": "Account",
+        "isLink": true,
+        "isSub": false,
+        "path": "/ecommerce/account", 
+      }
+    ]
+  },
+
+  //Landing Page
+  {
+    "title": "Landing Page",
+    "isLink": true,
+    "isSub": false,
+    "path":"/landing"
+  },
+
+  //apps
+  {
+    "title": "Apps",
+    "isLink": false,
+    "isSub": true,
+    "children": [
+      {
+        "title": "Widgets",
+        "isLink": true,
+        "isSub": false,
+        "path": "/apps/widgets", 
+      },
+      {
+        "title": "Sweets Alerts",
+        "isLink": true,
+        "isSub": false,
+        "path": "/apps/sweet-alerts", 
+      },
+      {
+        "title": "Mail",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Mail-Inbox",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/mail/inbox", 
+          },
+          {
+            "title": "View-Mail",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/mail/view", 
+          },
+          {
+            "title": "Mail-Compose",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/mail/compose", 
+          }
+        ]
+      },
+      {
+        "title": "Maps",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Leafflet Maps",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/maps/leaflet", 
+          },
+          {
+            "title": "Vector Maps",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/maps/vector", 
+          },
+          {
+            "title": "Google maps",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/maps/google", 
+          }
+        ]
+      },
+      {
+        "title": "Tabels",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Tables",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/tables", 
+          },
+          {
+            "title": "Grid JS Tables",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/tables/gridjs", 
+          },
+          {
+            "title": "Data Tables",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/tables/data", 
+          }
+        ]
+      },
+      {
+        "title": "Blog",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Blog Page",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/blog/page", 
+          },
+          {
+            "title": "Blog Details",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/blog/details", 
+          },
+          {
+            "title": "Blog Post",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/blog/post", 
+          }
+        ]
+      },
+      {
+        "title": "File Manager",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "File Manager List",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/file-manager/list", 
+          },
+          {
+            "title": "File Maager List",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/file-manager/manager-list", 
+          },
+          {
+            "title": "File Details",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/file-manager/details", 
+          }
+        ]
+      },
+      {
+        "title": "Icons",
+        "isLink": true,
+        "isSub": false,
+        "path": "/apps/icons", 
+      }
+    ]
+  },
+
+  //Elements
+  {
+    "title": "Elements",
+    "isLink": false,
+    "isSub": true,
+    "children": [
+      {
+        "title": "Alerts",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/alerts",  
+      },
+      {
+        "title": "Avatars",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/avatars",  
+      },
+      {
+        "title": "Badges",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/badges",  
+      },
+      {
+        "title": "Buttons",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/buttons",  
+      },
+      {
+        "title": "Cards",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/cards",  
+      },
+      {
+        "title": "Carousels",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/carousels",  
+      },
+      {
+        "title": "Collapses",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/collapses",  
+      },
+      {
+        "title": "Dropdowns",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/dropdowns",  
+      },
+      {
+        "title": "Forms",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/forms",  
+      },
+      {
+        "title": "Modals",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/modals",  
+      },
+      {
+        "title": "Notifications",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/notifications",  
+      },
+      {
+        "title": "Progress Bars",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/progress-bars",  
+      },
+      {
+        "title": "Spinners",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/spinners",  
+      },
+      {
+        "title": "Tabs",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/tabs",  
+      },
+      {
+        "title": "Tooltips",
+        "isLink": true,
+        "isSub": false,
+        "path": "/elements/tooltips",  
+      }
+    ]
+  },
+
+  //Advanced UI
+    {
+      "title": "Advanced UI",
+      "isLink": false,
+      "isSub": true,
+      "children": [
+        {
+          "title": "Carousel",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/carousel"
+        },
+        {
+          "title": "Full Calendar",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/full-calendar"
+        },
+        {
+          "title": "Deaggable card",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/deaggable-card"
+        },
+        {
+          "title": "Chat",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/chat"
+        },
+        {
+          "title": "Contacts",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/contacts"
+        },
+        {
+          "title": "Cards",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/cards"
+        },
+        {
+          "title": "Timeline",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/timeline"
+        },
+        {
+          "title": "Search",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/search"
+        },
+        {
+          "title": "userlist",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/userlist"
+        },
+        {
+          "title": "Notification",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/notification"
+        },
+        {
+          "title": "Tree-view",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/tree-view"
+        },
+        {
+          "title": "Modal & Closes",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/modal-closes"
+        },
+        {
+          "title": "Navbar",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/navbar"
+        },
+        {
+          "title": "offcanvas",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/offcanvas"
+        },
+        {
+          "title": "Placeholders",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/placeholders"
+        },
+        {
+          "title": "Ratings",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/ratings"
+        },
+        {
+          "title": "Scrollspy",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/scrollspy"
+        },
+        {
+          "title": "Swiper js",
+          "isLink": true,
+          "isSub": false,
+          "path": "/advanced-ui/swiper-js"
+        }
+      ]
+    },
+
+
+
+    // //pages
+    {
+      "title": "Pages",
+      "isLink": false,
+      "isSub": true,
+      
+      "children": [
+        {
+          "title": "profile",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/profile"
+        },
+        {
+          "title": "About Us",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/about-us"
+        },
+        {
+          "title": "Settings",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/settings"
+        },
+        {
+          "title": "Invocie",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/invoice"
+        },
+        {
+          "title": "Pricing",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/pricing"
+        },
+        {
+          "title": "Gallery",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/gallery"
+        },
+        {
+          "title": "Notification List",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/notification-list"
+        },
+        {
+          "title": "Faqs",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/faqs"
+        },
+        {
+          "title": "Succes Message",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/success-message"
+        },
+        {
+          "title": "Danger Message",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/danger-message"
+        },
+        {
+          "title": "Warming Message",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/warning-message"
+        },
+        {
+          "title": "Empty page",
+          "isLink": true,
+          "isSub": false,
+          "path": "/pages/empty-page"
+        }
+      ]
+    },
+    //utilites
+    {
+      "title": "Utilites",
+      "isLink": false,
+      "isSub": true,
+     
+      "children": [
+        {
+          "title": "Break Points",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/break-points"
+        },
+        {
+          "title": "Display",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/display"
+        },
+        {
+          "title": "Borders",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/borders"
+        },
+        {
+          "title": "Colors",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/colors"
+        },
+        {
+          "title": "Flex",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/flex"
+        },
+        {
+          "title": "Columns",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/columns"
+        },
+        {
+          "title": "Gutters",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/gutters"
+        },
+        {
+          "title": "Helpers",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/helpers"
+        },
+        {
+          "title": "Position",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/position"
+        },
+        {
+          "title": "More",
+          "isLink": true,
+          "isSub": false,
+          "path": "/utilites/more"
+        }
+      ]
+    },
+
+    //submenu
+    {
+      "title": "Submenu",
+      "isLink": false,
+      "isSub": true,
+    
+      "children": [
+        {
+          "title": "Submenu-01",
+          "isLink": true,
+          "isSub": false,
+          "path": "/submenu/submenu-01"
+        },
+        {
+          "title": "Submenu-02",
+          "isLink": false,
+          "isSub": true,
+       
+          "children": [
+            {
+              "title": "Level-01",
+              "isLink": true,
+              "isSub": false,
+              "path": "/submenu/submenu-02/level-01"
+            },
+            {
+              "title": "Level-02",
+              "isLink": false,
+              "isSub": true,
+              "path": "/submenu/submenu-02/level-02",
+              "children": [
+                {
+                  "title": "Level-11",
+                  "isLink": true,
+                  "isSub": false,
+                  "path": "/submenu/submenu-02/level-02/level-11"
+                },
+                {
+                  "title": "Level-12",
+                  // "isLink": true,
+                  // "isSub": false,
+                  
+                  // "path": "/submenu/submenu-02/level-02/level-12"
+                  "isLink":false,
+                  "isSub":true,
+                  "children":[
+                    {
+                      "title": "Level-11",
+                      "isLink": true,
+                      "isSub": false,
+                      "path": "/submenu/submenu-02/level-02/level-11"
+                    },
+                    {
+                      "title": "Level-11",
+                      "isLink": true,
+                      "isSub": false,
+                      "path": "/submenu/submenu-02/level-02/level-11"
+                    },
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    //authentication
+    {
+      "title": "Authentication",
+      "isLink": false,
+      "isSub": true,
+   
+      "children": [
+        {
+          "title": "Sign In",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/sign-in"
+        },
+        {
+          "title": "Sign Up",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/sign-up"
+        },
+        {
+          "title": "Forgot Password",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/forgot-password"
+        },
+        {
+          "title": "Reset Pasword",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/reset-password"
+        },
+        {
+          "title": "Buttons",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/buttons"
+        },
+        {
+          "title": "Lockscreen",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/lockscreen"
+        },
+        {
+          "title": "UnderConstruciton",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/underconstruction"
+        },
+        {
+          "title": "404 Error",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/404-error"
+        },
+        {
+          "title": "505 Error",
+          "isLink": true,
+          "isSub": false,
+          "path": "/authentication/505-error"
+        }
+      ]
+    },
+
+    //forms
+    {
+      "title": "Forms",
+      "isLink": false,
+      "isSub": true,
+    
+      "children": [
+        {
+          "title": "Form Elements",
+          "isLink": false,
+          "isSub": true,
+         
+          "children": [
+            {
+              "title": "Inputs",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/inputs"
+            },
+            {
+              "title": "Checks & Radios",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/checks-radios"
+            },
+            {
+              "title": "Input Group",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/input-group"
+            },
+            {
+              "title": "Form Select",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/form-select"
+            },
+            {
+              "title": "Range Slider",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/range-slider"
+            },
+            {
+              "title": "Input Masks",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/input-masks"
+            },
+            {
+              "title": "File Uploads",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/file-uploads"
+            },
+            {
+              "title": "Date,Time Picker",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/date-time-picker"
+            },
+            {
+              "title": "Color Picker",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/color-picker"
+            }
+          ]
+        },
+        {
+          "title": "Floating labels",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/floating-labels"
+        },
+        {
+          "title": "Forms Layouts",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/forms-layouts"
+        },
+        {
+          "title": "Form Editor",
+          "isLink": false,
+          "isSub": true,
+        
+          "children": [
+            {
+              "title": "Quill Editor",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-editor/quill-editor"
+            }
+          ]
+        },
+        {
+          "title": "validation",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/validation"
+        },
+        {
+          "title": "Select2",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/select2"
+        }
+      ]
+    },
+
+    //charts
+    {
+      "title": "Charts",
+      "isLink": false,
+      "isSub": true,
+     
+      "children": [
+        {
+          "title": "ChartsJS",
+          "isLink": true,
+          "isSub": false,
+          "path": "/charts/chartsjs"
+        },
+        {
+          "title": "Echart",
+          "isLink": true,
+          "isSub": false,
+          "path": "/charts/echart"
+        },
+        {
+          "title": "Apex Charts",
+          "isLink": false,
+          "isSub": true,
+          
+          "children": [
+            {
+              "title": "Line Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/line-charts"
+            },
+            {
+              "title": "Area Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/area-charts"
+            },
+            {
+              "title": "Column Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/column-charts"
+            },
+            {
+              "title": "Bar Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/bar-charts"
+            },
+            {
+              "title": "Mixed Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/mixed-charts"
+            },
+            {
+              "title": "Range Area Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/range-area-charts"
+            },
+            {
+              "title": "Timeline Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/timeline-charts"
+            },
+            {
+              "title": "CandleStick Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/candlestick-charts"
+            },
+            {
+              "title": "Boxplot Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/boxplot-charts"
+            },
+            {
+              "title": "Bubble Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/bubble-charts"
+            },
+            {
+              "title": "Scatter Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/scatter-charts"
+            },
+            {
+              "title": "Heatmap Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/heatmap-charts"
+            },
+            {
+              "title": "Treemao Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/treemap-charts"
+            },
+            {
+              "title": "Pie Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/pie-charts"
+            },
+            {
+              "title": "Radialbar Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/radialbar-charts"
+            },
+            {
+              "title": "Radar",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/radar"
+            },
+            {
+              "title": "Polararea Charts",
+              "isLink": true,
+              "isSub": false,
+              "path": "/charts/apex-charts/polararea-charts"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  
+
