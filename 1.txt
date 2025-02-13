@@ -1,0 +1,510 @@
+<div class="menu-item" 
+     (click)="toggle(menuItem, parentMenu)" 
+     [ngClass]="{ 'active-item': isActive(menuItem),
+      'parent-active':  menuItem.selected}">
+  <a [routerLink]="menuItem.path" (click)="selectedMenuItem(menuItem, parentMenu)">{{ menuItem.title }}</a>
+  @if(menuItem.isSub) { <span class="arrow"></span> }
+</div>
+
+@if(menuItem.isSub && menuItem.isOpen) {
+  @for(subMenu of menuItem.children; track subMenu) {
+    <div class="sub-menu-item"
+         [ngClass]="{ 'active-submenu': isActive(subMenu) }">
+         <span class="larrow"></span>
+      <app-menu-item [menuItem]="subMenu" [parentMenu]="menuItem.children" 
+      (click)="selectedMenuItem(menuItem, parentMenu)"></app-menu-item>
+    </div>
+  }
+}
+
+
+
+
+
+
+
+import { Router, } from '@angular/router';
+import { NgClass} from '@angular/common';
+import { Component ,Input} from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-menu-item',
+  standalone:true,
+  imports: [RouterLink,NgClass],
+  templateUrl: './menu-item.component.html',
+  styleUrl: './menu-item.component.css'
+})
+export class MenuItemComponent {
+  @Input() menuItem: any;  
+  @Input() parentMenu: any[] = []; 
+ 
+  constructor(private router: Router) {}
+
+   
+  toggle(item: any, itemchildren: any[] = []) {
+    this.closeAll(itemchildren, item);
+    item.isOpen = !item.isOpen;
+    
+  }
+
+  closeAll(menu: any[], currentItem: any) {
+    menu.forEach(item => {
+      if (item !== currentItem) {
+        item.isOpen = false;
+      }
+      if (item.children) {
+        this.closeAll(item.children, currentItem);
+      }
+    });
+  }
+
+  // callin the fucntion by itself 
+  // toggle(item: MenuItem, parent?: MenuItem[]): void {
+  //   if (parent) {
+  //     parent.forEach(child => {
+  //       if (child !== item) {
+  //         child.isOpen = false;
+  //       }
+  //     });
+  //   }
+  //   item.isOpen = !item.isOpen;
+  // }
+
+  
+  
+  isActive(item: any): boolean {
+    return this.router.url.includes(item.path);
+  }
+  
+
+
+  selectedMenuItem(item: any, parentMenu: any[] = []) {
+    if (!item.isLink ) {
+      item.selected = true;
+      parentMenu.forEach(parent => parent.selected = true);
+      parentMenu.forEach(sibling => {
+        if (sibling !== item) {
+          sibling.selected = false;
+        }
+      });
+    }     
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export interface MenuItem {
+  title: string;
+  isLink: boolean;
+  isSub: boolean;
+  isOpen?: boolean; 
+  path?:string;
+  isActive?:boolean;
+  children?: MenuItem[]; 
+}
+export const Menudata: MenuItem[] = [
+//Crypto Currencies
+{
+  "title": "Crypto Currencies",
+  "isLink": false,
+  "isSub": true,
+  "isOpen": false,
+  "children": [
+    {
+      "title": "Dashboard",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/dashboard", 
+    },
+    {
+      "title": "Marketcap",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/marketcap", 
+    },
+    {
+      "title": "Currency exchange",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/currency-exchange", 
+    },
+    {
+      "title": "Buy & Sell",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/buy-sell", 
+    },
+    {
+      "title": "Wallet",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/wallet", 
+    },
+    {
+      "title": "Transactions",
+      "isLink": true,
+      "isSub": false,
+      "path": "/crypto/transactions", 
+    }
+  ]
+},
+
+  
+
+  //Landing Page
+  {
+    "title": "Landing Page",
+    "isLink": true,
+    "isSub": false,
+    "path":"/landing"
+  },
+
+  //apps
+  {
+    "title": "Apps",
+    "isLink": false,
+    "isSub": true,
+    "children": [
+      {
+        "title": "Widgets",
+        "isLink": true,
+        "isSub": false,
+        "path": "/apps/widgets", 
+      },
+      {
+        "title": "Sweets Alerts",
+        "isLink": true,
+        "isSub": false,
+        "path": "/apps/sweet-alerts", 
+      },
+      {
+        "title": "Mail",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Mail-Inbox",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/mail/inbox", 
+          },
+          {
+            "title": "View-Mail",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/mail/view", 
+          },
+          {
+            "title": "Mail-Compose",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/mail/compose", 
+          }
+        ]
+      },
+      {
+        "title": "Maps",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Leafflet Maps",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/maps/leaflet", 
+          },
+          {
+            "title": "Vector Maps",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/maps/vector", 
+          },
+          {
+            "title": "Google maps",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/maps/google", 
+          }
+        ]
+      },
+      {
+        "title": "Tabels",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Tables",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/tables/tables", 
+          },
+          {
+            "title": "Grid JS Tables",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/tables/gridjs", 
+          },
+          {
+            "title": "Data Tables",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/tables/data", 
+          }
+        ]
+      },
+      {
+        "title": "Blog",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "Blog Page",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/blog/page", 
+          },
+          {
+            "title": "Blog Details",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/blog/details", 
+          },
+          {
+            "title": "Blog Post",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/blog/post", 
+          }
+        ]
+      },
+      {
+        "title": "File Manager",
+        "isLink": false,
+        "isSub": true,
+        "children": [
+          {
+            "title": "File Manager ",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/file-manager/manager", 
+          },
+          {
+            "title": "File Manager List",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/file-manager/manager-list", 
+          },
+          {
+            "title": "File Details",
+            "isLink": true,
+            "isSub": false,
+            "path": "/apps/file-manager/details", 
+          }
+        ]
+      },
+      {
+        "title": "Icons",
+        "isLink": true,
+        "isSub": false,
+        "path": "/apps/icons", 
+      }
+    ]
+  },
+
+ 
+    //submenu
+    {
+      "title": "Submenu",
+      "isLink": false,
+      "isSub": true,
+    "isOpen": false,
+      "children": [
+        {
+          "title": "Submenu-01",
+          "isLink": true,
+          "isSub": false,
+          "path": "/submenu/submenu-01"
+        },
+        {
+          "title": "Submenu-02",
+          "isLink": false,
+          "isSub": true,
+       
+          "children": [
+            {
+              "title": "Level-01",
+              "isLink": true,
+              "isSub": false,
+              "path": "/submenu/submenu-02/level-01"
+            },
+            {
+              "title": "Level-02",
+              "isLink": false,
+              "isSub": true,
+              "children": [
+                {
+                  "title": "Level-11",
+                  "isLink": true,
+                  "isSub": false,
+                  "path": "/submenu/submenu-02/level-02/level-11"
+                },
+                {
+                  "title": "Level-12",
+                  // "isLink": true,
+                  // "isSub": false,
+                  
+                  // "path": "/submenu/submenu-02/level-02/level-12"
+                  "isLink":false,
+                  "isSub":true,
+                  "children":[
+                    {
+                      "title": "Level-13",
+                      "isLink": true,
+                      "isSub": false,
+                      "path": "/submenu/submenu-02/level-02/level-13"
+                    },
+                    {
+                      "title": "Level-11-2",
+                      "isLink": true,
+                      "isSub": false,
+                      "path": "/submenu/submenu-02/level-02/level-12"
+                    },
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+
+    //forms
+    {
+      "title": "Forms",
+      "isLink": false,
+      "isSub": true,
+    
+      "children": [
+        {
+          "title": "Form Elements",
+          "isLink": false,
+          "isSub": true,
+         
+          "children": [
+            {
+              "title": "Inputs",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/inputs"
+            },
+            {
+              "title": "Checks & Radios",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/checks-radios"
+            },
+            {
+              "title": "Input Group",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/input-group"
+            },
+            {
+              "title": "Form Select",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/form-select"
+            },
+            {
+              "title": "Range Slider",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/range-slider"
+            },
+            {
+              "title": "Input Masks",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/input-masks"
+            },
+            {
+              "title": "File Uploads",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/file-uploads"
+            },
+            {
+              "title": "Date,Time Picker",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/date-time-picker"
+            },
+            {
+              "title": "Color Picker",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-elements/color-picker"
+            }
+          ]
+        },
+        {
+          "title": "Floating labels",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/floating-labels"
+        },
+        {
+          "title": "Forms Layouts",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/forms-layouts"
+        },
+        {
+          "title": "Form Editor",
+          "isLink": false,
+          "isSub": true,
+        
+          "children": [
+            {
+              "title": "Quill Editor",
+              "isLink": true,
+              "isSub": false,
+              "path": "/forms/form-editor/quill-editor"
+            }
+          ]
+        },
+        {
+          "title": "validation",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/validation"
+        },
+        {
+          "title": "Select2",
+          "isLink": true,
+          "isSub": false,
+          "path": "/forms/select2"
+        }
+      ]
+    },
+
+  ]
+  
+
