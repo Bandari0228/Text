@@ -1,0 +1,76 @@
+display menu data using loop
+
+//recursive
+
+//menuitem component
+<div class="menu-item" 
+     (click)="toggle(menuItem, parentMenu)" 
+     [ngClass]="{ 'active-item': isActive(menuItem),
+      'parent-active':  isParentActive(menuItem)}">
+  <a [routerLink]="menuItem.path" 
+  >
+  {{ menuItem.title }}</a>
+  @if(menuItem.isSub) { <span class="arrow"></span> }
+</div>
+
+@if(menuItem.isSub && menuItem.isOpen) {
+  @for(subMenu of menuItem.children; track subMenu) {
+    <div class="sub-menu-item">
+         <span class="larrow"></span>
+      <app-menu-item [menuItem]="subMenu" [parentMenu]="menuItem.children"></app-menu-item>
+    </div>
+  }
+}
+
+//sidemenu component
+<div class="menu" >
+      @for (menuItem of MenuOptions; track menuItem) {
+	<app-menu-item [menuItem]="menuItem" [parentMenu]="MenuOptions"></app-menu-item>
+     }
+</div>
+
+
+
+
+
+//without recursive 
+<div class="menu">
+  @for (menuItem of MenuOptions;track menuItem) {
+    <div class="menu-item" (click)="toggle(menuItem, MenuOptions) " >
+      <span>{{ menuItem.title }}</span>
+      @if (menuItem.isSub) {<span class="arrow"></span>}
+    </div>
+    <div>
+      @if (menuItem.isSub && menuItem.isOpen) {
+        @for (subMenu of menuItem.children; track subMenu) {
+          <div class="submenu-item"  (click)="toggle(subMenu, menuItem.children)">
+            @if(menuItem.isSub){ <span class="larrow" >></span> }
+            <span>{{ subMenu.title }}</span>
+            @if(subMenu.isSub){ <span class="arrow"></span> }
+          </div>
+          <div>
+            @if (subMenu.isSub && subMenu.isOpen) {
+              @for (subChild of subMenu.children; track subChild) {
+                <div class="subchild-item" (click)="toggle(subChild, subMenu.children)">
+                  @if(subMenu.isSub){ <span class="larrow">></span> }
+                  <span >{{ subChild.title }}</span>
+                  @if(subChild.isSub){ <span class="arrow"></span> }
+                </div>
+                @if(subChild.isSub && subChild.isOpen){
+                  @for (subSubChild of subChild.children; track subSubChild) {
+                    <div class="subsubchild-item"  (click)="toggle(subSubChild, subChild.children)">
+                      @if (subChild.isSub) {<span class="larrow">></span>  }
+                      <span>{{subSubChild.title}}</span>
+                      @if(subSubChild.isSub){ <span class="arrow">></span> }
+                    </div>
+                    
+                  }
+                }
+              }
+            }
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

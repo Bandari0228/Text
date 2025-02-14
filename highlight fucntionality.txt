@@ -1,0 +1,51 @@
+
+highlight fucntionality
+
+recursive 
+// isActive(item: any): boolean {
+  //   return this.router.url.includes(item.path);
+  // }
+  
+
+  
+
+  // isParentActive(item:any):boolean{
+  //   if(!item.children) return false;
+  //   for(let child of item.children){
+  //     if(this.isActive(child)){
+  //       return true;
+  //     }
+  //     if(this.isParentActive(child)){
+  //       return true;
+  //     }
+  //   }
+  //   return false
+  // }
+
+
+//without recursive
+// isParentActive(item: any): boolean {
+  
+  //   if (!item.children) return false;
+  //   for (let child of item.children) {
+  //     if (this.isActive(child)) {
+  //       return true;
+  //     }
+  //     for (let subchild of child.children || []) {
+  //       if (this.isActive(subchild)) {
+  //         return true;
+  //       }
+  //       for (let subsubchild of subchild.children ||[]){
+  //         if(this.isActive(subsubchild)){
+  //           return true
+  //         }
+  //         for(let subchildren of subsubchild.children || []){
+  //           if(this.isActive(subchildren)){
+  //             return true
+  //           }
+  //         }
+  //       }
+  //     }
+  //   } 
+  //   return false;
+  // }
