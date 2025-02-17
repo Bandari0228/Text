@@ -1,0 +1,75 @@
+full code 
+toggle,highlight, reload
+
+
+import { NavigationEnd, Router, } from '@angular/router';
+import { NgClass} from '@angular/common';
+import {  Component ,Input, OnInit} from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-menu-item',
+  imports: [RouterLink,NgClass],
+  templateUrl: './menu-item.component.html',
+  styleUrl: './menu-item.component.css'
+})
+export class MenuItemComponent implements OnInit {
+  @Input() menuItem: any;  
+  @Input() parentMenu: any[] = []; 
+
+  
+  ngOnInit() {
+    this.updateMenuState(this.parentMenu);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log(event);
+        this.updateMenuState(this.parentMenu);
+      }
+    });
+  }
+
+  constructor(private router: Router) {}
+  
+  toggle(item: any) {
+    item.isOpen = !item.isOpen;
+    this.closeAll(this.parentMenu, item);
+  }
+
+  closeAll(menu: any[], currentItem: any) {
+    menu.forEach(item => {
+      if (item !== currentItem) {
+        item.isOpen = false;
+      }
+      if (item.children) {
+        this.closeAll(item.children, currentItem);
+      }
+    });
+  }
+
+
+  isActive(item: any): boolean {
+    return this.router.url.includes(item.path); 
+  }
+  
+  isParentActive(item: any): boolean {
+    if (!item.children) return false;
+    for (let child of item.children) {
+      if (this.isActive(child) || this.isParentActive(child)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  updateMenuState(menu: any[]) {
+    menu.forEach(item => {
+      item.isOpen = this.isActive(item) || this.isParentActive(item);
+      if (item.children) {
+        this.updateMenuState(item.children);
+      }
+    });
+  }
+
+  
+  
+}
