@@ -1,0 +1,62 @@
+//app.config.ts
+import { provideHttpClient } from '@angular/common/http';
+provideHttpClient()
+
+
+//create a service file 
+
+// src/app/services/data.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'  // Ensures the service is available globally
+})
+export class DataService {
+
+  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';  // API URL
+
+  constructor(private http: HttpClient) { }
+
+  // Get data from the API
+  getData(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);  // Making HTTP GET request to the API
+  }
+}
+
+
+
+
+
+//component
+
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';  // Adjust the import path based on your file structure
+
+@Component({
+  selector: 'app-data',
+  templateUrl: './data.component.html',
+  styleUrls: ['./data.component.css']
+})
+export class DataComponent implements OnInit {
+  data: any;  // Variable to store fetched data
+
+  constructor(private dataService: DataService) {} 
+
+  ngOnInit(): void {
+    this.fetchData();  // Fetch data when component initializes
+  }
+
+  fetchData() {
+    this.dataService.getData().subscribe({
+      next: (d) => {
+        this.data = d;  // Assign the data to the local variable
+        console.log(this.data);  // Optionally, log the data for debugging
+      },
+      error: (e) => {
+        console.error('Error fetching data', e);  // Log any errors
+      }
+    });
+  }
+}
