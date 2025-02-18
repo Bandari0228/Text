@@ -1,0 +1,102 @@
+<p>dashboard works!</p>
+<div class="container">
+    <button class="btn btn-primary" (click)="open(modalContent)">Open Form</button>
+</div>
+<ng-template #modalContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal Form</h4>
+        <button type="button" class="btn-close" (click)="modal.dismiss()"></button>     
+    </div>
+    <div class="modal-body">
+
+        <div>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="name" name="name">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="email" name="email">
+
+        </div>
+        <div>
+            <label for="number">number</label>
+            <input type="number" class="form-control" id="number" required [(ngModel)]="number" name="number">
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveForm(modal)" [disabled]="modal.invalid">Save</button>
+    </div>
+</ng-template>
+
+
+
+
+
+
+@if(users.length>0){
+<h5>saved users</h5>
+@for (user of users; track user) {
+<div class="user">
+    <h5>{{user.name}}</h5>
+    <h5>{{user.email}}</h5>
+    <h5>{{user.number}}</h5>
+</div>
+}
+}
+
+
+
+
+
+
+
+//ts
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  imports:[FormsModule],
+  styleUrls: ['./dashboard.component.css']
+})
+export class DashboardComponent  {
+  name: string = '';
+  email: string = '';
+  number:number|undefined;
+
+  users: { name: string, email: string ,number:number}[] = [];
+
+  constructor(private modalService: NgbModal) {}
+
+  open(content: any) {
+    this.modalService.open(content);
+  }
+
+ 
+  saveForm(modal: any) {
+    if (this.name && this.email && this.number ) {
+      const user = { name: this.name, email: this.email ,number:this.number};
+      console.log('User Saved:', user);
+      this.users.push(user);
+      modal.dismiss()
+      console.log(modal.dismiss);
+      
+      this.modalreset(user)
+    } else {
+      alert('Please fill out the form.');
+    }
+  }
+  
+
+    modalreset(modal:any){
+      this.email=''
+      this.name=""
+      this.number=0
+    }
+
+ 
+}
