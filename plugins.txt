@@ -1,0 +1,146 @@
+1) Carousel
+ng-bootstrap
+link:https://ng-bootstrap.github.io/#/home
+
+ngx-bootstrap
+link:https://valor-software.com/ngx-bootstrap/components/carousel?tab=overview
+
+ngx-owl
+Install: npm i ngx-owl-carousel-o
+link:https://www.npmjs.com/package/ngx-owl-carousel-o
+
+2) Gallery
+ng-gallery
+link:https://www.npmjs.com/package/ng-gallery
+
+ngx-gallery (kolkov)
+(alternative option) install error
+
+ks89 Gallery
+Note:
+1)goblal css
+2)import module inn congif.ts 
+3)link:https://ks89.github.io/angular-modal-gallery-2024-v13.github.io/getting-started 
+
+3) Full Calendar
+FullCalendar
+link:https://www.npmjs.com/package/fullcalendar
+
+
+4) Editor
+ngx-editor
+Generate HTML from JSON
+link:https://www.npmjs.com/package/ngx-editor
+
+kolkov editor
+Input and output
+Install: npm i @kolkov/angular-editor
+Add: "node_modules/@kolkov/angular-editor/themes/default.scss"
+link:https://www.npmjs.com/package/@kolkov/angular-editor
+
+
+quill-editor
+Install: npm i quill
+Add: ./node_modules/quill/dist/quill.snow.css
+link:https://www.npmjs.com/package/ngx-quill
+
+
+
+5) Sliders
+ngx-slider
+link:https://www.npmjs.com/package/@angular-slider/ngx-slider
+Single slider
+Range slider
+
+
+Angular Material Slider
+link:https://material.angular.io/components/slider/overview
+
+6)wizard
+https://projects.spruko.com/nuxt/ynex/preview/forms/form-wizard/
+
+
+angular-material-wizard
+link:https://material.angular.io/components/stepper/overview
+
+
+
+7) Time Picker
+ng-bootstrap Timepicker
+link:https://ng-bootstrap.github.io/#/components/timepicker/examples
+
+angular-material
+link:https://material.angular.io/components/timepicker/overview
+
+Ngx-Mat-Timepicker
+link:https://www.npmjs.com/package/ngx-mat-timepicker?activeTab=readme
+
+ng-pick-datetime 
+note:(6years back version only avaiable
+
+
+8) Date Picker
+ng-bootstrap
+add:"node_modules/ngx-bootstrap/datepicker/bs-datepicker.css" 
+link:https://valor-software.com/ngx-bootstrap/components/datepicker?tab=overview#basic
+
+ng2-date-picker
+install:npm install ng2-date-picker
+Add:"node_modules/@angular/cdk/overlay-prebuilt.css"], 
+link:https://www.npmjs.com/package/ng2-date-picker
+
+
+ng-datepicker
+link:https://ng-bootstrap.github.io/#/components/datepicker/overview
+
+Flatpicker
+add: "node_modules/flatpickr/dist/flatpickr.css"
+link:https://github.com/mattlewis92/angularx-flatpickr?tab=readme-ov-file#readme
+
+9) Color Picker
+ngx-color-picker
+link:https://www.npmjs.com/package/ngx-color-picker?activeTab=readme#installing-and-usage
+
+ngx-color
+link:https://www.npmjs.com/package/ngx-color?activeTab=readme
+
+
+
+
+
+10) Select Dropdown
+->ng-select
+install:npm i @ng-select/ng-select
+
+add:
+"node_modules/@ng-select/ng-select/themes/default.theme.css",
+"node_modules/@ng-select/ng-select/themes/material.theme.css"
+
+link:https://www.npmjs.com/package/@ng-select/ng-select
+Multiple Select Dropdown
+Single Select Dropdown
+
+
+->ngx-select-dropdown
+install:npm i ngx-select-dropdown
+link:https://www.npmjs.com/package/ngx-select-dropdown
+
+->agular2-multiselect-dropdown
+install:npm i angular2-multiselect-dropdown
+link:https://www.npmjs.com/package/angular2-multiselect-dropdown
+add:"node_modules/angular2-multiselect-dropdown/themes/default.theme.css"
+
+
+
+11) Tree View
+ng2 tree
+link:https://www.npmjs.com/package/ng2-tree
+
+
+Angular Material Tree View
+linkL:https://material.angular.io/components/tree/overview
+
+folder ->plugin name component ->two exapmles 
+no jquery pluing should be used
+
+npm i ngx-wizard
