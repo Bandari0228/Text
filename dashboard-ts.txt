@@ -1,0 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+// import {dragula} from 'ng2-dragula';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { dragula } from 'ng2-dragula';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'app-draggablecards',
+  templateUrl: './draggablecards.component.html',
+  styleUrls: ['./draggablecards.component.scss'],
+})
+export class DraggablecardsComponent implements OnInit {
+  isCollapsed = false;
+  isCollapsed1 = false;
+  
+  constructor(private modalService: NgbModal) {}
+  ngOnInit(): void {
+    dragula([
+      document.querySelector('#draggable-right'),
+      document.querySelector('#draggable-left'),
+    ]);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+  toggleClass = 'card-fullscreen';
+  public fullScreen: boolean = true;
+
+  fullScreenToggle() {
+    document
+      .querySelector('.fullscreentoggle')
+      ?.classList.toggle('card-fullscreen');
+  }
+
+  closeResult: string | undefined;
+}
+   
