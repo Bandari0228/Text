@@ -1,0 +1,203 @@
+<!-- Start::row-1 -->
+<div class="row" cdkDropListGroup>
+  <!-- Left Column -->
+  <div class="col-xl-6" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="leftColumnItems">
+    <!-- Loop through all cards in the left column -->
+    <div *ngFor="let item of leftColumnItems" cdkDrag [cdkDragData]="item">
+      <!-- Card 1: Image Overlay Card -->
+      <div *ngIf="item.type === 'image-overlay'" class="card custom-card overlay-card">
+        <img src="./assets/images/media/media-74.jpg" class="card-img" alt="..." />
+        <div class="card-img-overlay d-flex flex-column p-0 over-content-bottom">
+          <div class="card-body text-fixed-white">
+            <div class="card-text">{{ item.title }}</div>
+            <div class="card-text mb-2 d-none d-sm-block">
+              {{ item.description }}
+            </div>
+            <div class="card-text">Last updated 3 mins ago</div>
+          </div>
+          <div class="card-footer text-fixed-white">Last updated 3 mins ago</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Success Background Card -->
+      <div *ngIf="item.type === 'success-background'" class="card custom-card card-bg-success">
+        <div class="card-body">
+          <div class="d-flex align-items-center w-100">
+            <div class="me-2">
+              <span class="avatar avatar-rounded">
+                <img src="./assets/images/faces/5.jpg" alt="img" />
+              </span>
+            </div>
+            <div class="">
+              <div class="fs-15 fw-semibold">{{ item.title }}</div>
+              <p class="mb-0 text-fixed-white op-7 fs-12">{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Collapsible Card -->
+      <div *ngIf="item.type === 'collapsible'" class="card custom-card collapse-card">
+        <div class="card-header d-flex border-bottom-0 justify-content-between">
+          <div class="card-title">{{ item.title }}</div>
+          <a
+            (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed"
+            href="javascript:void(0);"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            <i class="ri-arrow-down-s-line fs-18 collapse-open"></i>
+            <i class="ri-arrow-up-s-line collapse-close fs-18"></i>
+          </a>
+        </div>
+        <div
+          #collapse="ngbCollapse"
+          [(ngbCollapse)]="isCollapsed"
+          class="collapse show border-top"
+          id="collapseExample"
+        >
+          <div class="card-body">
+            <h6 class="card-text fw-semibold">{{ item.title }}</h6>
+            <p class="card-text mb-0">
+              {{ item.description }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary">Read More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Closeable Card -->
+      <div *ngIf="item.type === 'closeable'" class="card custom-card">
+        <div class="card-header justify-content-between">
+          <div class="card-title">{{ item.title }}</div>
+          <a
+            
+            [attr.aria-expanded]="!isCollapsed1"
+            href="javascript:void(0);"
+            data-bs-toggle="card-remove"
+          >
+            <i class="ri-close-line fs-18"></i>
+          </a>
+        </div>
+        <div class="card-body">
+          <h6 class="card-text fw-semibold">{{ item.title }}</h6>
+          <p class="card-text mb-0">
+            {{ item.description }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="col-xl-6" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="rightColumnItems">
+    <!-- Loop through all cards in the right column -->
+    <div *ngFor="let item of rightColumnItems" cdkDrag [cdkDragData]="item">
+      <!-- Card 5: Primary Background Card -->
+      <div *ngIf="item.type === 'primary-background'" class="card custom-card card-bg-primary">
+        <a href="javascript:void(0);" class="card-anchor"></a>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0 text-center">
+            <h6 class="text-fixed-white">
+              {{ item.title }}
+            </h6>
+            <footer class="blockquote-footer mt-3 fs-14 text-fixed-white op-7">
+              {{ item.description }}
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Card 6: Fullscreen Toggle Card -->
+      <div *ngIf="item.type === 'fullscreen-toggle'" class="card custom-card fullscreentoggle">
+        <div class="card-header justify-content-between">
+          <div class="card-title">{{ item.title }}</div>
+          <a
+            (click)="fullScreenToggle()"
+            href="javascript:void(0);"
+            data-bs-toggle="card-fullscreen"
+          >
+            <i class="ri-fullscreen-line"></i>
+          </a>
+        </div>
+        <div class="card-body">
+          <h6 class="card-text fw-semibold">{{ item.title }}</h6>
+          <p class="card-text mb-0">
+            {{ item.description }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary">Read More</button>
+        </div>
+      </div>
+
+      <!-- Card 7: Image Overlay Card -->
+      <div *ngIf="item.type === 'image-overlay'" class="card overlay-card text-fixed-white">
+        <img src="./assets/images/media/media-71.jpg" class="card-img" alt="..." />
+        <div class="card-img-overlay d-flex flex-column p-0">
+          <div class="card-header text-fixed-white">
+            <div class="card-title">{{ item.title }}</div>
+          </div>
+          <div class="card-body overflow-scroll text-fixed-white">
+            <div class="card-text mb-2">
+              {{ item.description }}
+            </div>
+            <div class="card-text">Last updated 3 mins ago</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8: Avatar Card -->
+      <div *ngIf="item.type === 'avatar'" class="card custom-card">
+        <a href="javascript:void(0);" class="card-anchor"></a>
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="me-3">
+              <span class="avatar avatar-md">
+                <img src="./assets/images/faces/15.jpg" alt="img" />
+              </span>
+            </div>
+            <div>
+              <p class="card-text mb-0 fs-14 fw-semibold">{{ item.title }}</p>
+              <div class="card-title text-muted fs-12 mb-0">
+                {{ item.description }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9: Border Info Card -->
+      <div *ngIf="item.type === 'border-info'" class="card custom-card border border-info">
+        <a href="javascript:void(0);" class="card-anchor"></a>
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="me-3">
+              <span class="avatar avatar-xl">
+                <img src="./assets/images/faces/8.jpg" alt="img" />
+              </span>
+            </div>
+            <div>
+              <p class="card-text text-info mb-1 fs-14 fw-semibold">
+                {{ item.title }}
+              </p>
+              <div class="card-title fs-12 mb-1">{{ item.description }}</div>
+              <div class="card-title text-muted fs-11 mb-0">24 Years, Female</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet />
+
+

@@ -1,0 +1,65 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgFor, NgIf } from '@angular/common';
+
+interface Card {
+  id: number; // Unique identifier for each card
+  type: string; // Type of card (e.g., 'image-overlay', 'success-background', etc.)
+  title: string; // Card title
+  description: string; // Card description
+}
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet,DragDropModule,NgbModule,NgFor,NgIf],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'test';
+  isCollapsed = false;
+  isCollapsed1 = false;
+  leftColumnItems: Card[] = [
+    { id: 1, type: 'image-overlay', title: 'Image Overlays Are Awesome!', description: 'There are many variations of passages of Lorem Ipsum available...' },
+    { id: 2, type: 'success-background', title: 'Samantha Sid', description: 'In leave for 1 month' },
+    { id: 3, type: 'collapsible', title: 'Collapsible Card', description: 'There are many variations of passages of Lorem Ipsum available...' },
+    { id: 4, type: 'closeable', title: 'Closed Card', description: 'There are many variations of passages of Lorem Ipsum available...' }
+  ];
+
+  rightColumnItems: Card[] = [
+    { id: 5, type: 'primary-background', title: 'The best and most beautiful things...', description: 'Someone famous as -Helen Keller' },
+    { id: 6, type: 'fullscreen-toggle', title: 'FullScreen Card', description: 'There are many variations of passages of Lorem Ipsum available...' },
+    { id: 7, type: 'image-overlay', title: 'Image Overlays Are Awesome!', description: 'There are many variations of passages of Lorem Ipsum available...' },
+    { id: 8, type: 'avatar', title: 'Atharva Simon', description: 'Correspondent Professor' },
+    { id: 9, type: 'border-info', title: 'Alicia Keys', description: 'Department Of Commerce' }
+  ];
+  // Drop event handler
+  drop(event: CdkDragDrop<Card[]>) {
+    console.log('Drop event triggered:', event);
+    if (event.previousContainer === event.container) {
+      // Reorder within the same list
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      // Transfer between lists
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+  toggleClass = 'card-fullscreen';
+  public fullScreen: boolean = true;
+
+  fullScreenToggle() {
+    document
+      .querySelector('.fullscreentoggle')
+      ?.classList.toggle('card-fullscreen');
+  }
+
+  closeResult: string | undefined;
+}
