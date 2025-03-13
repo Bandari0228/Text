@@ -1,0 +1,171 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./next.css";
+
+function Dash() {
+  const navigate = useNavigate();
+  const arr = [
+    { title: 'Dashboard' },
+    {
+      title: 'Crypto Currencies',
+      children: [
+        { title: 'Dashboard', path: '/Dasshboard' },
+        { title: 'Marketcap', path: '/Marketcap' },
+        { title: 'Currency Exchange', path: '/Currency' },
+        { title: 'Buy&sell', path: '/Buy' },
+        { title: 'Wallet', path: '/Wallet' },
+        { title: 'Transaction', path: '/Transaction' }
+      ]
+    },
+    {
+      title: 'ECommerce',
+      children: [
+        { title: 'Dashboard', path: '/Dashboard1' },
+        { title: 'Products', path: '/Products' },
+        { title: 'Product Details', path: '/Productdetails' },
+        { title: 'cart', path: '/Cart' },
+        { title: 'Wishlist', path: 'Wishlist' },
+        { title: 'Checkout', path: 'Checkout' },
+        { title: 'Orders', path: 'Orders' },
+        { title: 'Addproduct', path: 'Addproduct' },
+        { title: 'Account', path: 'account' }
+      ]
+    },
+    {
+      title: 'Landing Page'
+    },
+    {
+      title: 'Apps',
+      children: [
+        { title: 'widgets', path: '/Widgets' },
+        { title: 'Sweet Alerts', path: '/Sweetalerts' },
+        {
+          title: 'Mail',
+          children: [
+            { title: 'Mail inbox', path: '/Mailinbox' },
+            { title: 'View mail', path: '/Viewmail' },
+            { title: 'Mail compose', path: '/Mailcompose' }
+          ]
+        },
+        {
+          title: 'Maps',
+          children: [
+            { title: 'Leaflet Maps', path: '/Leafletmaps' }
+          ]
+        },
+        {
+          title: 'Tables',
+          children: [
+            { title: 'tables', path: '/Tables1' },
+            { title: 'Ngx-Easy-Tables', path: '/Ngxeasytables' },
+            { title: 'Angular Material Tables', path: '/Angularmaterialtables' }
+          ]
+        },
+        {
+          title: 'Blog',
+          children: [
+            { title: 'Blog page', path: '/Blogpage' },
+            { title: 'Blog details', path: '/Blogdetails' },
+            { title: 'Blog Post', path: '/Blogpost' }
+          ]
+        },
+        {
+          title: 'File Manager',
+          children: [
+            { title: 'File manager', path: '/Filemanager' },
+            { title: 'File Manager List', path: '/Filemanagerlist' },
+            { title: 'File details', path: '/Filedetails' }
+          ]
+        },
+        { title: 'Icons', path: 'Icons' }
+      ]
+    },
+    { title: 'Elements' },
+    { title: 'Advanced UI' },
+    { title: 'Pages' },
+    { title: 'Utilities' },
+    { title: 'Submenus' },
+    { title: 'Authentication' }
+  ];
+
+  const [selected, setSelected] = useState(
+    JSON.parse(localStorage.getItem("selected"))
+  );
+  const [value, setValue] = useState(selected.parent);
+  const [subOpenIndex, setSubOpenIndex] = useState(selected.child,);
+  const [subvalue, setsubvalue] = useState(selected.grandchild)
+  useEffect(() => {
+    localStorage.setItem("selected", JSON.stringify(selected));
+  }, [selected]);
+
+  const handleSelection = (parentIndex, childIndex = null, grandchildIndex = null, path = null) => {
+    setSelected({ parent: parentIndex, child: childIndex, grandchild: grandchildIndex });
+
+    if (path) {
+      navigate(path);
+    }
+  };
+  return (
+    <div className="demo">
+      {arr.map((item, index) => (
+        <div key={index}>
+          <h2 
+            onClick={() => setValue(value === index ? null : index)}
+            style={{
+              color: selected.parent === index ? "blue" : "black",
+            }}
+          >
+            {item.title}
+            {item.children && <span className="span"> &gt; </span>}
+          </h2>
+          {value === index && item.children && (
+            <ul>
+              {item.children.map((child, childIndex) => (
+                <li
+                  key={childIndex}
+                  onClick={() => {
+                    if (child.path) {
+                      handleSelection(index, childIndex, null, child.path);
+                    } else {
+                      setSubOpenIndex(subOpenIndex === childIndex ? null : childIndex);
+                    }
+                  }}
+                  style={{
+                    color: selected.parent === index && selected.child === childIndex ? "blue" : "black",
+                  }}
+                >
+                  {child.title}
+                  {child.children && <span className="span"> &gt; </span>}
+                  {subOpenIndex === childIndex && child.children && (
+                    <ul>
+                      {child.children.map((grandchild, grandchildIndex) => (
+                        <li
+                          key={grandchildIndex}
+                          onClick={() => {
+                            if (grandchild.path) {
+                              handleSelection(index, childIndex, grandchildIndex, grandchild.path)
+                            } else {
+                              setsubvalue(subvalue === grandchildIndex ? null : grandchildIndex)
+                            }
+                          }
+                          }
+                          style={{
+                            color: selected.parent === index && selected.child === childIndex && selected.grandchild === grandchildIndex ? "blue" : "black",
+                          }}
+                        >
+                          {grandchild.title}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default Dash;
