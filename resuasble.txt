@@ -1,0 +1,154 @@
+  <div class="col-xl-4 col-md-12">
+    <div class="card">
+ 
+      @for(card of titlecards;track card){
+
+
+        <app-spk-basic-card [title]="card.title"  [subtitle]="card.subtitle" ></app-spk-basic-card>
+      }
+        <!-- <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <a href="javascript:void(0)" class="card-link">Card link</a>
+          <a href="javascript:void(0)" class="card-link">Another link</a>
+        </div> -->
+      
+    </div>
+  </div>
+
+
+<div class="row">
+
+  @for(card of basicCards;track card){
+  <div class="col-md-12 col-xl-4">
+    <app-spk-basic-card [title]="card.title" [headerClass]="card.headerClass" [isCollapsed]="card.isCollapsed()"
+    [isClosed]="card.isClosed()" [bodyContent]="card.bodyContent" [footerClass]="card.footerClass"
+      [footerContent]="card.footerContent">
+    </app-spk-basic-card>
+  </div>
+  }
+</div>
+
+
+
+
+<div class="card" [ngbCollapse]="internalIsClosed()">
+    <div class="card-header " [ngClass]="headerClass()">
+        <h3 class="card-title">{{title()}}</h3>
+        @if (subtitle()) {
+        <h6 class="card-subtitle">{{ subtitle() }}</h6>
+
+        }
+       
+        <div class="card-options">
+           
+            <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"
+                (click)="Collapsetoggle()">
+                <i class="fe fe-chevron-{{ !internalIsCollapsed ? 'up' : 'down'}}"></i>
+            </a>
+            
+            
+
+                <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"
+                (click)="Closetoggle()">
+                <i class="fe fe-x"></i>
+            </a>
+            
+        </div>
+        
+    </div>
+
+    <div [ngbCollapse]="internalIsCollapsed()">
+        <div class="card-body">
+            {{bodyContent()}}
+        </div>
+        <div class="card-footer {{footerClass()}}">
+            {{footerContent()}}
+        </div>
+    </div>
+</div>
+
+
+import { NgClass } from '@angular/common';
+import { Component, Input, input, signal } from '@angular/core';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'app-spk-basic-card',
+  imports: [NgbCollapse,NgClass],
+  templateUrl: './spk-basic-card.component.html',
+  styleUrl: './spk-basic-card.component.scss'
+})
+export class SpkBasicCardComponent {
+   title = input<string>('');
+   headerClass = input<string>('');
+   bodyContent = input<string>('');
+   footerClass = input<string>('');
+   cardName = input<string>('');
+
+  subtitle=input<string>('');
+   footerContent = input<string>('');
+ 
+  isClosed = input<boolean>(false);
+  isCollapsed = input<boolean>(false);
+ 
+  
+  internalIsClosed = signal<boolean>(this.isClosed());
+  internalIsCollapsed = signal<boolean>(this.isClosed());
+ 
+  Collapsetoggle() {
+    this.internalIsCollapsed.set(!this.internalIsCollapsed())
+  }
+
+  Closetoggle() {
+
+    this.internalIsClosed.set(!this.internalIsClosed());
+ 
+  }
+
+ 
+}
+
+
+
+titlecards=[
+    {
+      title:'Card title',
+      
+      subtitle:'Card subtitle'
+    }
+  ]
+  
+basicCards = [
+  {
+    title:'Basic card',
+    headerClass:'',
+    isCollapsed: signal<boolean>(false) ,
+    isClosed: signal<boolean>(false), 
+    bodyContent:' Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet ',
+    footerClass:'',
+    footerContent:' This is Basic card footer '
+  },
+  {
+    title:'Basic color card-header',
+    headerClass:'bg-primary br-tr-3 br-tl-3"',
+    isCollapsed: signal<boolean>(false) ,
+    isClosed: signal<boolean>(false), 
+    bodyContent:' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ',
+    footerClass:'',
+    footerContent:' This is Basic card footer '
+  },
+  {
+    title:'Basic color card-footer',
+    headerClass:'',
+    isCollapsed: signal<boolean>(false) ,
+    isClosed: signal<boolean>(false), 
+    bodyContent:' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ',
+    footerClass:'bg-danger br-br-3 br-bl-3',
+    footerContent:'Basic card footer'
+  },
+]
+
+
