@@ -1,0 +1,141 @@
+    <!-- Start::row-1 -->
+    <div class="row justify-content-center">
+        <div class="col-xl-10">
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4">
+                <div>
+                    <p class="fw-semibold fs-18 mb-0">Gallery Grid View</p>
+                </div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" *ngFor="let image of images">
+                    <div class="card custom-card">
+                        <img [src]="image.src" 
+                             [alt]="image.alt" 
+                             class="img-fluid cursor-pointer"
+                             (click)="openImage(image.src)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" *ngIf="selectedImage" (click)="closeImage()">
+        <div class="lightbox-content">
+            <img [src]="selectedImage" alt="Selected image">
+            <button class="close-btn" (click)="closeImage()">×</button>
+        </div>
+    </div>
+    <!--End::row-1 -->
+    <router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="d-md-flex d-block align-items-center justify-content-between my-4">
+    <div>
+        <p class="fw-semibold fs-18 mb-0">Gallery Tabs View</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="text-center mb-4">
+        <div class="tab-style-5 p-1 rounded d-inline-block bg-white shadow-sm">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-pills justify-content-center" role="tablist">
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink class="gallery-nav-link rounded w-100 fs-15 px-5 me-2">All</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6" *ngFor="let image of allImages.slice(0, 4); let i = index">
+                                        <div class="card custom-card overflow-hidden gallery-cards animate-fade">
+                                            <img [src]="image.src" [alt]="image.alt" 
+                                                 class="img-fluid gallery-tab-img cursor-pointer"
+                                                 (click)="openLightbox(i, allImages)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6" *ngFor="let image of allImages.slice(4); let i = index">
+                                        <div class="card custom-card overflow-hidden gallery-cards animate-fade">
+                                            <img [src]="image.src" [alt]="image.alt" 
+                                                 class="img-fluid gallery-tab-img cursor-pointer"
+                                                 (click)="openLightbox(i + 4, allImages)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink class="gallery-nav-link rounded w-100 fs-15 px-5">Popular</a>
+                    <ng-template ngbNavContent>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6" *ngFor="let image of popularImages.slice(0, 2); let i = index">
+                                        <div class="card custom-card overflow-hidden gallery-cards animate-fade">
+                                            <img [src]="image.src" [alt]="image.alt" 
+                                                 class="img-fluid gallery-tab-img cursor-pointer"
+                                                 (click)="openLightbox(i, popularImages)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-auto">
+                                <div class="card custom-card overflow-hidden gallery-cards animate-fade" 
+                                     *ngFor="let image of popularImages.slice(2); let i = index">
+                                    <img [src]="image.src" [alt]="image.alt" 
+                                         class="img-fluid gallery-tab-img cursor-pointer"
+                                         (click)="openLightbox(i + 2, popularImages)">
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                    <a ngbNavLink class="gallery-nav-link rounded w-100 fs-15 px-5">Latest</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-sm-4 col-auto">
+                                <div class="card custom-card overflow-hidden gallery-cards animate-fade" 
+                                     *ngFor="let image of recentImages.slice(0, 2); let i = index">
+                                    <img [src]="image.src" [alt]="image.alt" 
+                                         class="img-fluid gallery-tab-img cursor-pointer"
+                                         (click)="openLightbox(i, recentImages)">
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6" *ngFor="let image of recentImages.slice(2); let i = index">
+                                        <div class="card custom-card overflow-hidden gallery-cards animate-fade">
+                                            <img [src]="image.src" [alt]="image.alt" 
+                                                 class="img-fluid gallery-tab-img cursor-pointer"
+                                                 (click)="openLightbox(i + 2, recentImages)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
